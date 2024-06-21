@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/prop-types@15.8.1/prop-types.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        function Header() {
+
+            return(
+                <div className='header'>
+                    <h1>오늘의 할 일!!! {new Date().toLocaleDateString()}</h1>
+                </div>
+            );
+
+        }
+
+        function Content() {
+
+            return(
+                <div className="content">
+                    <Todolist/>
+                </div>
+            );
+
+        }
+
+        function Footer() {
+
+            return(
+                <div className="footer">
+                    <p>Copyright 2024. ohgiraffers</p>
+                </div>
+            );
+
+        }
+
+        function App() {
+            return(
+                <div className="container">
+                    <Header/>
+                    <Content/>
+                    <Footer/>
+                </div>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+
+    </script>
+</body>
+</html>
