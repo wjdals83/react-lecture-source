@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/prop-types@15.8.1/prop-types.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!--
+        arr.map(callback);
+        - callback 함수의 파라미터로 전달 된 배열 내 각 요소를
+            원하는 규칙에 따라 변환 후 그 결과로 새로운 배열 반환
+        
+        callback
+        - 새로운 배열 요소를 생성하는 규칙을 담은 하마수, 인수(파라미터)는 3가지가 있다.
+        - currentValue : 현재 처리중인 요소
+        - index : 현재 처리중인 요소의 index 값
+        - array : 현재 처리중인 원본 배열
+    -->
+
+    <script type="text/babel">
+        // {names} 는 구조분해 할당. 만약 구조분해 할당을 해주지 않으면
+        // function Items(props) {
+        // console.log(props.names); 이렇게 써줘야 한다!
+
+        function Items({names}) {
+
+            console.log(names);
+
+            return(
+                <>
+                    <ul>
+                        {names.map( (name, index) => <li key={index}>{name}</li>)}
+                    </ul>
+                </>
+            );
+
+        }
+
+        const names = ['푸바오', '후이바오', '루이바오', '러바오', '아이바오'];
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<Items names={names}/>)
+
+        /*
+            key란?
+            컴포넌트 배열 렌더링 시, 어떤 원소에 변동이 있는지 알아내기 위한 식별자의 역할.
+            key 가 존재하지 않을 떄는 가상 DOM 이 실제 DOM 과 비교하는 (diff 알고리즘) 과정에서
+            리스트를 순차적으로 비교해 가면서 변화를 감지한다.
+            하지만 key 가 존재하면 변화를 더 빠르게 감지할 수 있다!
+
+            일반적으로 database 에서 조회한 데이터의 경우, pk 컬럼값을 key 로 설정하면 된다. 
+        */
+    </script>
+</body>
+</html>

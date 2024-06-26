@@ -94,20 +94,19 @@
 
             const [time, setTime] = useState(new Date().toLocaleTimeString());
 
-            useEffect(() => {setInterval(()=>setTime(new Date().toLocaleTimeString()), 1000), [time]});
+            useEffect(() => {setInterval(() => setTime(new Date().toLocaleTimeString()), 1000)}, [time]);
 
             return(
-                <div className='header'>
-                    <h1>오늘의 할 일!!! {new Date().toLocaleTimeString()}</h1>    
+                <div className="header">
+                    <h1>오늘의 할일!!! {time} </h1>
                 </div>
             );
-
         }
 
-
-        function TodoItems({ todos, setTodos }) {
+        function TodoItems({todos, setTodos}) {
 
             const removeTodo = id => {
+
                 const removedList = todos.filter(todo => todo.id !== id);
 
                 setTodos(removedList);
@@ -128,22 +127,24 @@
             }
 
             return(
+
                 <>
-                    { 
-                        todos.map( 
+                    {
+                        todos.map(
                             todo => <p key={todo.id}>
-                                        <input type="checkbox" id={todo.id} onChange={ onChangeHandler }/>
-                                        <label 
-                                            for={todo.id} 
-                                            style={ {textDecoration: todo.isDone ? 'line-through' : 'none'} }
-                                        >
-                                            {todo.description}
-                                        </label>
-                                        <button onClick= {() => removeTodo(todo.id)}>x</button>  
-                                    </p>
-                        ) 
+                                    <input type="checkbox" id={todo.id} onChange={ onChangeHandler }/>
+                                    <label 
+                                        for={todo.id}
+                                        style={ {textDecoration: todo.isDone ? 'line-through' : 'none'} }
+                                    >
+                                        {todo.description}
+                                    </label>
+                                    <button onClick={ () => removeTodo(todo.id)}>x</button>
+                                </p> 
+                        )
                     }
                 </>
+
             );
 
         }
@@ -151,7 +152,7 @@
         function TodoList() {
 
             const [todos, setTodos] = useState([
-                {id: 1, description: '할일 목록을 추가해주세요', isDone: false}
+                {id: 1, description: '할 일 목록을 추가해 주세요.', isDone: false}
             ]);
 
             const [inputText, setInputText] = useState('');
@@ -162,7 +163,7 @@
             }
 
             const onClickHandler = () => {
-                const changeTodos = todos.concat({
+                const changedTodos = todos.concat({
                     id: nextId,
                     description: inputText,
                     isDone: false
@@ -170,40 +171,45 @@
 
                 setInputText('');
                 setNextId(nextId + 1);
-                setTodos(changeTodos);
+                setTodos(changedTodos);
             }
 
             return(
+
                 <>
-                    <h3>ToDo-List</h3>  
+                    <h3>Todo-List</h3>
                     <div className="todo-list">
                         <TodoItems
-                            todos={todos}
-                            setTodos={setTodos}
+                            todos={ todos }
+                            setTodos={ setTodos }
                         />
                     </div>
                     <div className="append-list">
                         <input 
                             type="text"
                             value={ inputText }
-                            onChange={ onChangeHandler }
+                            onChange = { onChangeHandler }
                         />
                         <button
                             onClick={ onClickHandler }
                         >
                             추가하기
-                        </button>    
+                        </button>
                     </div>
                 </>
+
             );
+
         }
 
         function Content() {
 
             return(
-                <div className="content">
-                    <TodoList/>    
-                </div>
+                <>
+                    <div className="content">
+                        <TodoList/>
+                    </div>
+                </>
             );
 
         }
@@ -212,24 +218,27 @@
 
             return(
                 <div className="footer">
-                    <p>Copyright 2024. ohgiarrfers</p>
+                    <p>Copyright 2024. ohgiraffers</p>
                 </div>
             );
+
         }
 
         function App() {
 
             return(
-                <div className="container">
+
+                <div calssName="container">
                     <Header/>
                     <Content/>
                     <Footer/>
                 </div>
-            );
 
+            );
         }
 
         ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+
     </script>
 </body>
 </html>
