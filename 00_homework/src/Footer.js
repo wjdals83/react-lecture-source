@@ -2,9 +2,9 @@ function Footer() {
 
     return(
 
-        <>
-            <h1>Footer 영역입니다.</h1>
-        </>
+        <div className="footer">
+            <p>Copyright 2024. jungmin</p>
+        </div>
 
     );
 
