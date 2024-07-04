@@ -35,26 +35,26 @@
                             longitude: currentPosition.coords.longitude,
                             latitude: currentPosition.coords.latitude
                         });
+
                         resolve(currentPosition.coords);
                     })
                 })
                 .then(coords => {
                     console.log(coords);
-                    fetch(`https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}`)
+                    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${coords.latitude}&lon=${coords.longitude}&appid=${API_KEY}`)
                         .then(res => res.json())
                         .then(json => {
-                            console.log('json', json)
-                            console.log('json.name');
+                            console.log('json', json);
+                            console.log(json.name);
                             console.log(json.weather[0])
                             console.log(json.wind)
 
                             setCityName(json.name);
                             setWeather(json.weather[0]);
                             setWind(json.wind);
-
-
                         })
                 })
+                
             }, 
             [])
 
@@ -63,8 +63,8 @@
                     <h3>현재위치</h3>
                     <h4>{`경도 : ${position.longitude} 위도 : ${position.latitude}`}</h4>
                     <h4>조회할 도시 : {cityName}</h4>
-                    <h4>{`날씨 : ${weather.main} 날씨 설명 : ${weather.description}`}</h4>
-                    <h4>{`풍향 : ${wind.deg} 도 풍속 : ${wind.spped}`}</h4>
+                    <h4>{`날씨 : ${weather.main} 날씨설명 : ${weather.description}`}</h4>
+                    <h4>{`풍향 : ${wind.deg} 도 풍속 : ${wind.speed}`}</h4>
                 </>
             );
 
@@ -81,6 +81,6 @@
         }
 
         ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
-    </script>
+     </script>
 </body>
 </html>
